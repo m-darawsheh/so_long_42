@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 16:35:50 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/10/06 16:36:03 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:12:11 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "get_next_line.h"
+
 #define MAX_LEFT_SIZE 4096
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 static char	*set_line(char *line_buffer, char (*rem)[MAX_LEFT_SIZE])
 {
@@ -86,20 +78,3 @@ char	*get_next_line(int fd)
 	}
 	return (set_line(line, &rem));
 }
-
-// #include <stdio.h>
-// int main ()
-// {
-// 	char *line;
-// 	int fd = open ("file.txt", O_RDONLY);
-
-// 	while ((line = get_next_line(fd)) != NULL)
-// 	{
-// 	// line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	}
-
-// 	close(fd);
-// 	return(0);
-// }

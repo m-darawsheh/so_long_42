@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdarawsh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:05:36 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/09/12 12:05:42 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:44:45 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-size_t			ft_strlen(char *s);
+size_t			ft_strlen_p(char *s);
 int				ft_printf(const char *format, ...);
 int				ft_putareg(char formater, va_list args);
 int				ft_puthex_fd(unsigned long n, char c, int fd);
