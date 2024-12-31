@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/30 14:08:35 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2024/12/31 20:26:17 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,22 @@ typedef struct s_game
 	int			fd;
 	char		*sub_map;
 	char		**map;
-
-	int	width;// FOR SIZE OF MAP
-	int height;// FOR SIZE OF MAP
+	int			width;
+	int			height;
+	int			player;
+	int			exit;
+	int			collectible;
+	int			x_coordinate;
+	int			y_coordinate;
 }	t_game;
 
+void	check_wall(t_game *game);
+void	check_P_E_C(t_game *game);
+void	check_rectangle(t_game *game);
+void	check_map(t_game *game);
+void	check_extension(char *file, t_game *game);
+void	parsing_map(t_game *game, char *file);
+void free_fun(char *error_massage, t_game *game);
+void	find_player(t_game *game);
+void	calculate_size(t_game *game);
 #endif

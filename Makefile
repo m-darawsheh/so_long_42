@@ -1,10 +1,10 @@
 NAME = so_long
 
-SRCS = main.c
+SRCS = main.c check_wall.c parsing_check.c
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBS_FLAGS = -Lprintf -lftprintf -Llibft -lft -lmlx -lX11 -lXext
 
