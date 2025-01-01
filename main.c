@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 16:19:16 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:54:43 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,39 @@ void	free_mlx(t_game *game)
 		}
 }
 
+void	free_image(t_game *game)
+{
+	if(game->collectible_img)
+		mlx_destroy_image(game->mlx, game->collectible_img);
+	if(game->exit_img)
+		mlx_destroy_image(game->mlx, game->exit_img);
+	if(game->player_img)
+		mlx_destroy_image(game->mlx, game->player_img);
+	if(game->wall_img)
+		mlx_destroy_image(game->mlx, game->wall_img);
+	if(game->bground_img)
+		mlx_destroy_image(game->mlx, game->bground_img);
+}
+
+void	free_empty_map(t_game *game)
+{
+	int i = 0;
+	while (i < game->height)
+	{
+		free(game->empty_map[i]);
+		i++;
+	}
+	free(game->empty_map);
+}
+
 void	free_fun(char *error_massage, t_game *game)
 {
-	// printf("in free_fun\n");
 	ft_putendl_fd(error_massage, 2);
 	close(game->fd);
 	free_map(game);
-	// printf("FREE MAP\n");
+	free_empty_map(game);
 	free_submap(game);
-	// printf("FREE SUBMAP\n");
+	free_image(game);
 	free_window(game);
 	free_mlx(game);	
 	exit (1);
@@ -142,8 +166,9 @@ int main(int argc, char **argv)
 	can_move(&game);
 	convert_xpm_to_file(&game);
 	put_image_to_window(&game);
-	mlx_hook(game.win, 17, 0, close_window, &game);
+
 	
+	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
 	
 	return 0;

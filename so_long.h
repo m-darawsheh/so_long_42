@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 16:15:23 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:50:42 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
+	void		*mlx;//
+	void		*win;//
 	void		*collectible_img;
 	void		*exit_img;
 	void		*player_img;
 	void		*wall_img;
 	void		*bground_img;
-	char		*sub_map;
-	char		**map;
-	int			fd;
+	char		*sub_map;//
+	char		**map;//
+	int			fd;//
 	int			width;
 	int			height;
 	int			player;
