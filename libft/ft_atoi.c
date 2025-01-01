@@ -6,13 +6,13 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 10:41:03 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 11:01:30 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:19:36 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)  
+int	ft_atoi(const char *nptr)
 {
 	int	i;
 	int	result;

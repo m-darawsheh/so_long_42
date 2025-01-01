@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 09:43:30 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:15:23 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	int			fd;
+	void		*collectible_img;
+	void		*exit_img;
+	void		*player_img;
+	void		*wall_img;
+	void		*bground_img;
 	char		*sub_map;
 	char		**map;
+	int			fd;
 	int			width;
 	int			height;
 	int			player;
@@ -50,4 +55,8 @@ void	calculate_size(t_game *game);
 void	empty_map(t_game *game);
 void	flood_fill(t_game *game, int x, int y);
 void	can_move(t_game *game);
+void	cheacker_EC_move(t_game *game);
+void	convert_xpm_to_file(t_game *game);
+void	put_image_to_window(t_game *game);
+
 #endif

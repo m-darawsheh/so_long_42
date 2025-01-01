@@ -6,12 +6,37 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 09:09:37 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 11:23:14 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:15:35 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "so_long.h"
+
+void	cheacker_EC_move(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'E' && !(game->empty_map[i][j]))
+			{
+				free_fun("Error\n: Invalid map (Can't move to exit)", game);
+			}
+			if(game->map[i][j] == 'C' && !(game->empty_map[i][j]))
+			{
+				free_fun("Error\n: Invalid map (Can't move to collectible)", game);
+			}	
+			j++;
+		}
+		i++;
+	}
+}
 
 void	empty_map(t_game *game)
 {
@@ -46,27 +71,9 @@ void	flood_fill(t_game *game, int x, int y)
 
 void	can_move(t_game *game)
 {
-	int	i;
-	int	j;
 
-	i = 0;
 	empty_map(game);
 	flood_fill(game, game->x_coordinate, game->y_coordinate);
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'E' && !(game->empty_map[i][j]))
-			{
-				free_fun("Error\n: Invalid map (Can't move to exit)", game);
-			}
-			if(game->map[i][j] == 'C' && !(game->empty_map[i][j]))
-			{
-				free_fun("Error\n: Invalid map (Can't move to collectible)", game);
-			}	
-			j++;
-		}
-		i++;
-	}
+	cheacker_EC_move(game);
+
 }
