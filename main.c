@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/31 21:57:36 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 09:48:40 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	calculate_size(t_game *game)
 int close_window(t_game *game)
 {
 	// void(keycode);
+	
 	free_fun("Close window \n", game);
 
 	exit(0);
@@ -137,8 +138,9 @@ int main(int argc, char **argv)
 	game.mlx = mlx_init();
 	
 	game.win = mlx_new_window(game.mlx, (game.width) * FACTOR, (game.height) * FACTOR, "Hello, MiniLibX!");
+	can_move(&game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
-	mlx_key_hook(game.win, close_window, &game);
+	// mlx_key_hook(game.win, close_window, &game);
 	// mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
 	

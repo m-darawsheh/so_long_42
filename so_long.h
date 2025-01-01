@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/31 20:26:17 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 09:43:30 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_game
 	int			collectible;
 	int			x_coordinate;
 	int			y_coordinate;
+	int			**empty_map;
 }	t_game;
 
 void	check_wall(t_game *game);
@@ -46,4 +47,7 @@ void	parsing_map(t_game *game, char *file);
 void free_fun(char *error_massage, t_game *game);
 void	find_player(t_game *game);
 void	calculate_size(t_game *game);
+void	empty_map(t_game *game);
+void	flood_fill(t_game *game, int x, int y);
+void	can_move(t_game *game);
 #endif

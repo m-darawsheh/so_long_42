@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:31:15 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/31 21:57:53 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/01 09:07:15 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,28 +81,33 @@ void	check_extension(char *file, t_game *game)
 		free_fun("Error\n: Invalid file extension", game);
 	}
 }
-
-void	parsing_map(t_game *game, char *file)
+void parsing_map(t_game *game, char *file)
 {
-	char	*tmp;
+    char *tmp;
+    char *new_sub_map;
 
-	check_extension(file, game);
-	game->fd = open(file, O_RDONLY);
-	if (game->fd == -1)
-	{
-		free_fun("Error\n: File not found", game);
-	}
-	tmp = get_next_line(game->fd);
-	game->sub_map = ft_strdup("");
-	while (tmp)
-	{
-		game->sub_map = ft_strjoin(game->sub_map, tmp);
-		free(tmp);
-		tmp = get_next_line(game->fd);
-	}
-	free(tmp);
-	check_map(game);
-	game->map = ft_split(game->sub_map, '\n');
-	if(game->map == NULL)
-		free_fun("Error\n: Invalid map", game);
+    check_extension(file, game);
+    game->fd = open(file, O_RDONLY);
+    if (game->fd == -1)
+        free_fun("Error\n: File not found", game);
+    tmp = get_next_line(game->fd);
+    game->sub_map = ft_strdup("");
+	if(game->sub_map == NULL)
+		free_fun("Error\n: strdup fail", game);
+    while (tmp)
+    {
+        new_sub_map = ft_strjoin(game->sub_map, tmp);
+		if (new_sub_map == NULL)
+			free_fun("Error\n: strjoin fail", game);
+        free(game->sub_map);
+        game->sub_map = new_sub_map;
+        free(tmp);
+        tmp = get_next_line(game->fd);
+    }
+    if (tmp)
+        free(tmp);
+    check_map(game);
+    game->map = ft_split(game->sub_map, '\n');
+    if (game->map == NULL)
+        free_fun("Error\n: Invalid map", game);
 }
