@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:37:17 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/02 17:12:44 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:43:36 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,22 +111,22 @@ static void	move_left(t_game *game)
 
 int	move_player(int keycode, t_game *game)
 {
-		if (keycode == 13)
+		if (keycode == 119)
 		{
 			move_up(game);
 			printf("UP\n");
 		}
-		if (keycode == 1)
+		if (keycode == 115)
 		{
 			move_down(game);
 			printf("DOWN\n");
 		}
-		if (keycode == 2)
+		if (keycode == 100)
 		{
 			move_right(game);
 			printf("RIGHT\n");
 		}
-		if (keycode == 0)
+		if (keycode == 97)
 		{
 			move_left(game);
 			printf("LEFT\n");
