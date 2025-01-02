@@ -1,10 +1,10 @@
 NAME = so_long
 
-SRCS = main.c check_wall.c parsing_check.c flood_fill.c put_image.c
+SRCS = main.c check_wall.c parsing_check.c flood_fill.c put_image.c move_player.c
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LIBS_FLAGS = -Lprintf -lftprintf -Llibft -lft -lmlx -lX11 -lXext
 

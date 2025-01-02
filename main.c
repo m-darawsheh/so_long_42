@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 16:54:43 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:11:51 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ int close_window(t_game *game)
 	exit(0);
 }
 
+
+
 int main(int argc, char **argv)
 {
 	t_game	game;
@@ -156,17 +158,19 @@ int main(int argc, char **argv)
 	check_wall(&game);
 	check_P_E_C(&game);
 	find_player(&game);
-	
+
 
 
 	game.mlx = mlx_init();
 	
 	game.win = mlx_new_window(game.mlx, (game.width) * FACTOR, (game.height) * FACTOR, "so_long");
-	
+
 	can_move(&game);
 	convert_xpm_to_file(&game);
 	put_image_to_window(&game);
-
+	
+	// int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
+	mlx_hook(game.win, 3, 0, move_player, &game);
 	
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);

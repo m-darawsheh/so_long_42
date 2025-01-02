@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 16:50:42 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:23:14 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include "../printf/ft_printf.h"
 #include "../libft/get_next_line.h"
 #define FACTOR 50
+#define UP_MOVE 13
+#define DOWN_MOVE 1
+#define LEFT_MOVE 0
+#define RIGHT_MOVE 2
 
 typedef struct s_game
 {
@@ -49,7 +53,7 @@ void	check_rectangle(t_game *game);
 void	check_map(t_game *game);
 void	check_extension(char *file, t_game *game);
 void	parsing_map(t_game *game, char *file);
-void free_fun(char *error_massage, t_game *game);
+void	free_fun(char *error_massage, t_game *game);
 void	find_player(t_game *game);
 void	calculate_size(t_game *game);
 void	empty_map(t_game *game);
@@ -58,5 +62,6 @@ void	can_move(t_game *game);
 void	cheacker_EC_move(t_game *game);
 void	convert_xpm_to_file(t_game *game);
 void	put_image_to_window(t_game *game);
+int		move_player(int keycode, t_game *game);
 
 #endif
