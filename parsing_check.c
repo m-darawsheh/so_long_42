@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:31:15 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/03 20:41:22 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 00:40:24 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,3 @@ void	parsing_map(t_game *game, char *file)
 	if (game->map == NULL)
 		free_fun("Error\n: Invalid map", game);
 }
-
-	// if (tmp)
-	//     free(tmp);

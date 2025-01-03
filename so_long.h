@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/03 20:39:25 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 00:37:55 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,16 @@ void	can_move(t_game *game);
 void	cheacker_ec_move(t_game *game);
 void	convert_xpm_to_file(t_game *game);
 void	put_image_to_window(t_game *game);
-int		move_player(int keycode, t_game *game);
 void	free_map(t_game *game);
 void	free_image(t_game *game);
 void	free_empty_map(t_game *game);
 void	ft_on_exit(t_game *game, int keycode);
 void	win_free_fun(char *win_massage, t_game *game);
+int		move_player(int keycode, t_game *game);
+int		close_window(t_game *game);
+void	image_up_down(t_game *game, int next_move);
+void	image_left_right(t_game *game, int next_move);
+void	choose_up_down(t_game *game, int next_move);
+void	choose_left_right(t_game *game, int next_move);
+
 #endif
