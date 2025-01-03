@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 12:08:15 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/31 20:16:00 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/03 20:23:23 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_first_row(t_game *game)
 	i = 0;
 	while (game->map[0][i] != '\0')
 	{
-		if(game->map[0][i] != '1')
+		if (game->map[0][i] != '1')
 		{
 			free_fun("Error\n: Invalid map (Wall) first row", game);
 		}
@@ -34,7 +34,7 @@ static void	check_last_row(t_game *game)
 	i = 0;
 	while (game->map[game-> height - 1][i] != '\0')
 	{
-		if(game->map[game->height - 1][i] != '1')
+		if (game->map[game->height - 1][i] != '1')
 		{
 			free_fun("Error\n: Invalid map (Wall) last row", game);
 		}
@@ -49,7 +49,7 @@ static void	check_first_column(t_game *game)
 	i = 0;
 	while (i < game->height && game->map[i][0])
 	{
-		if(game->map[i][0] != '1')
+		if (game->map[i][0] != '1')
 		{
 			free_fun("Error\n: Invalid map (Wall) first column", game);
 		}
@@ -62,9 +62,9 @@ static void	check_last_column(t_game *game)
 	int	i;
 
 	i = 0;
-	while ( i < game->height && game->map[i][game->width - 1])
+	while (i < game->height && game->map[i][game->width - 1])
 	{
-		if(game->map[i][game->width - 1] != '1')
+		if (game->map[i][game->width - 1] != '1')
 		{
 			free_fun("Error\n: Invalid map (Wall) last column", game);
 		}

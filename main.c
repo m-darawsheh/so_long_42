@@ -6,75 +6,11 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/02 17:11:51 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/03 20:46:56 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void free_submap(t_game *game)
-{
-	if(game->sub_map)
-	{
-		free(game->sub_map);
-		// printf("FREE SUBMAP\n");
-	}
-}
-
-void	free_map(t_game *game)
-{
-	if(game->map)
-	{
-		int i = 0;
-		while (game->map[i])
-		{
-			free(game->map[i]);
-			i++;
-		}
-		free(game->map);
-	}
-	game->map = NULL;
-	
-}
-void	free_window(t_game *game)
-{
-	if(game->win)
-		mlx_destroy_window(game->mlx, game->win);
-}
-
-void	free_mlx(t_game *game)
-{
-	if(game->mlx)
-		{
-			mlx_destroy_display(game->mlx);	
-			free(game->mlx);
-		}
-}
-
-void	free_image(t_game *game)
-{
-	if(game->collectible_img)
-		mlx_destroy_image(game->mlx, game->collectible_img);
-	if(game->exit_img)
-		mlx_destroy_image(game->mlx, game->exit_img);
-	if(game->player_img)
-		mlx_destroy_image(game->mlx, game->player_img);
-	if(game->wall_img)
-		mlx_destroy_image(game->mlx, game->wall_img);
-	if(game->bground_img)
-		mlx_destroy_image(game->mlx, game->bground_img);
-}
-
-void	free_empty_map(t_game *game)
-{
-	int i = 0;
-	while (i < game->height)
-	{
-		free(game->empty_map[i]);
-		i++;
-	}
-	free(game->empty_map);
-}
 
 void	free_fun(char *error_massage, t_game *game)
 {
@@ -82,10 +18,20 @@ void	free_fun(char *error_massage, t_game *game)
 	close(game->fd);
 	free_map(game);
 	free_empty_map(game);
-	free_submap(game);
+	if (game->sub_map)
+	{
+		free(game->sub_map);
+	}
 	free_image(game);
-	free_window(game);
-	free_mlx(game);	
+	if (game->win)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+	}
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	exit (1);
 }
 
@@ -118,7 +64,7 @@ void	calculate_size(t_game *game)
 
 	i = 0;
 	j = 0;
-	while(game->map[i])
+	while (game->map[i])
 	{
 		i++;
 	}
@@ -130,50 +76,35 @@ void	calculate_size(t_game *game)
 	game->width = j;
 }
 
-
-int close_window(t_game *game)
+int	close_window(t_game *game)
 {
-	// void(keycode);
-	
 	free_fun("Close window \n", game);
-
 	exit(0);
 }
 
-
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
+
 	if (argc != 2)
 	{
 		perror ("Error\n: Invalid number of arguments");
 		return (1);
 	}
 	parsing_map(&game, argv[1]);
-
 	check_rectangle(&game);
-
 	calculate_size(&game);
 	check_wall(&game);
-	check_P_E_C(&game);
+	check_p_e_c(&game);
 	find_player(&game);
-
-
-
 	game.mlx = mlx_init();
-	
-	game.win = mlx_new_window(game.mlx, (game.width) * FACTOR, (game.height) * FACTOR, "so_long");
-
+	game.win = mlx_new_window(game.mlx,
+			(game.width) * FACTOR, (game.height) * FACTOR, "so_long");
 	can_move(&game);
 	convert_xpm_to_file(&game);
 	put_image_to_window(&game);
-	
-	// int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
-	mlx_hook(game.win, 3, 0, move_player, &game);
-	
+	mlx_hook(game.win, 2, 1L << 0, move_player, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
-	
-	return 0;
+	return (0);
 }

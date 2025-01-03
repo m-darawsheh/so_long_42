@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = main.c check_wall.c parsing_check.c flood_fill.c put_image.c move_player.c
+SRCS = main.c check_wall.c parsing_check.c flood_fill.c put_image.c move_player.c helper.c
 
 CC = cc
 

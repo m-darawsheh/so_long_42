@@ -6,13 +6,13 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:31:15 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 09:07:15 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/03 20:41:22 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_P_E_C(t_game *game)
+void	check_p_e_c(t_game *game)
 {
 	int	i;
 
@@ -20,17 +20,17 @@ void	check_P_E_C(t_game *game)
 	game->player = 0;
 	game->exit = 0;
 	game->collectible = 0;
-	while(game->sub_map[i])
+	while (game->sub_map[i])
 	{
-		if(game->sub_map[i] == 'P')
+		if (game->sub_map[i] == 'P')
 			game->player++;
-		if(game->sub_map[i] == 'E')
+		if (game->sub_map[i] == 'E')
 			game->exit++;
-		if(game->sub_map[i] == 'C')
+		if (game->sub_map[i] == 'C')
 			game->collectible++;
 		i++;
 	}
-	if(game->player != 1 || game->exit != 1 || game->collectible < 1)
+	if (game->player != 1 || game->exit != 1 || game->collectible < 1)
 		free_fun("Error\n: Invalid map (P, E, C)", game);
 }
 
@@ -66,7 +66,9 @@ void	check_map(t_game *game)
 		{
 			free_fun("Error\n: Invalid map (Empty line)", game);
 		}
-		if (!(game->sub_map[i] != '1' || game->sub_map[i] != '0' || game->sub_map[i] != 'P' || game->sub_map[i] != 'E' || game->sub_map[i] != 'C'))
+		if (!(game->sub_map[i] != '1' || game->sub_map[i] != '0'
+				|| game->sub_map[i] != 'P' || game->sub_map[i] != 'E'
+				|| game->sub_map[i] != 'C'))
 		{
 			free_fun("Error\n: Invalid map (Invalid element)", game);
 		}
@@ -81,33 +83,35 @@ void	check_extension(char *file, t_game *game)
 		free_fun("Error\n: Invalid file extension", game);
 	}
 }
-void parsing_map(t_game *game, char *file)
-{
-    char *tmp;
-    char *new_sub_map;
 
-    check_extension(file, game);
-    game->fd = open(file, O_RDONLY);
-    if (game->fd == -1)
-        free_fun("Error\n: File not found", game);
-    tmp = get_next_line(game->fd);
-    game->sub_map = ft_strdup("");
-	if(game->sub_map == NULL)
+void	parsing_map(t_game *game, char *file)
+{
+	char	*tmp;
+	char	*new_sub_map;
+
+	check_extension(file, game);
+	game->fd = open(file, O_RDONLY);
+	if (game->fd == -1)
+		free_fun("Error\n: File not found", game);
+	tmp = get_next_line(game->fd);
+	game->sub_map = ft_strdup("");
+	if (game->sub_map == NULL)
 		free_fun("Error\n: strdup fail", game);
-    while (tmp)
-    {
-        new_sub_map = ft_strjoin(game->sub_map, tmp);
+	while (tmp)
+	{
+		new_sub_map = ft_strjoin(game->sub_map, tmp);
 		if (new_sub_map == NULL)
 			free_fun("Error\n: strjoin fail", game);
-        free(game->sub_map);
-        game->sub_map = new_sub_map;
-        free(tmp);
-        tmp = get_next_line(game->fd);
-    }
-    if (tmp)
-        free(tmp);
-    check_map(game);
-    game->map = ft_split(game->sub_map, '\n');
-    if (game->map == NULL)
-        free_fun("Error\n: Invalid map", game);
+		free(game->sub_map);
+		game->sub_map = new_sub_map;
+		free(tmp);
+		tmp = get_next_line(game->fd);
+	}
+	check_map(game);
+	game->map = ft_split(game->sub_map, '\n');
+	if (game->map == NULL)
+		free_fun("Error\n: Invalid map", game);
 }
+
+	// if (tmp)
+	//     free(tmp);

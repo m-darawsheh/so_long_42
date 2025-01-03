@@ -6,14 +6,13 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 09:09:37 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/01 15:15:35 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/03 20:22:18 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "so_long.h"
 
-void	cheacker_EC_move(t_game *game)
+void	cheacker_ec_move(t_game *game)
 {
 	int	i;
 	int	j;
@@ -28,9 +27,10 @@ void	cheacker_EC_move(t_game *game)
 			{
 				free_fun("Error\n: Invalid map (Can't move to exit)", game);
 			}
-			if(game->map[i][j] == 'C' && !(game->empty_map[i][j]))
+			if (game->map[i][j] == 'C' && !(game->empty_map[i][j]))
 			{
-				free_fun("Error\n: Invalid map (Can't move to collectible)", game);
+				free_fun("Error\n: Invalid map "
+					"(Can't move to collectible)", game);
 			}	
 			j++;
 		}
@@ -40,19 +40,19 @@ void	cheacker_EC_move(t_game *game)
 
 void	empty_map(t_game *game)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    game->empty_map = ft_calloc(game->height, sizeof(int *));
-    if (game->empty_map == NULL)
-        free_fun("Error\n: calloc failed for empty_map", game);
-    while (i < game->height)
-    {
-        game->empty_map[i] = ft_calloc(game->width, sizeof(int));
-        if (game->empty_map[i] == NULL)
-            free_fun("Error\n: calloc failed for empty_map row", game);
-        i++;
-    }
+	i = 0;
+	game->empty_map = ft_calloc(game->height, sizeof(int *));
+	if (game->empty_map == NULL)
+		free_fun("Error\n: calloc failed for empty_map", game);
+	while (i < game->height)
+	{
+		game->empty_map[i] = ft_calloc(game->width, sizeof(int));
+		if (game->empty_map[i] == NULL)
+			free_fun("Error\n: calloc failed for empty_map row", game);
+		i++;
+	}
 }
 
 void	flood_fill(t_game *game, int x, int y)
@@ -68,12 +68,9 @@ void	flood_fill(t_game *game, int x, int y)
 	flood_fill(game, x, y - 1);
 }
 
-
 void	can_move(t_game *game)
 {
-
 	empty_map(game);
 	flood_fill(game, game->x_coordinate, game->y_coordinate);
-	cheacker_EC_move(game);
-
+	cheacker_ec_move(game);
 }
