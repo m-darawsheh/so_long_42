@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 19:08:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/03 23:34:40 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 05:49:54 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,13 @@ void	free_map(t_game *game)
 	int	i;
 
 	i = 0;
-	if (game->map)
+	while (game->map[i])
 	{
-		while (game->map[i])
-		{
-			free(game->map[i]);
-			i++;
-		}
-		free(game->map);
+		free(game->map[i]);
+		i++;
 	}
+	free(game->map);
 	game->map = NULL;
-}
-
-void	free_image(t_game *game)
-{
-	if (game->collectible_img)
-		mlx_destroy_image(game->mlx, game->collectible_img);
-	if (game->exit_img)
-		mlx_destroy_image(game->mlx, game->exit_img);
-	if (game->player_img)
-		mlx_destroy_image(game->mlx, game->player_img);
-	if (game->wall_img)
-		mlx_destroy_image(game->mlx, game->wall_img);
-	if (game->bground_img)
-		mlx_destroy_image(game->mlx, game->bground_img);
 }
 
 void	free_empty_map(t_game *game)

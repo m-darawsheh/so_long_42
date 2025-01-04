@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 00:02:02 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 03:11:52 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 05:23:59 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	choose_up_down(t_game *game, int next_move)
 	if (game->map[game->y_coordinate + next_move]
 		[game->x_coordinate] != '1')
 	{
+		game->number_of_moves++;
+		ft_printf("Number of moves: %d\n", game->number_of_moves);
 		if (game->collectible == 0)
 			time_to_exit(game);
 		if (game->map[game->y_coordinate + next_move]
@@ -61,6 +63,8 @@ void	choose_left_right(t_game *game, int next_move)
 	if (game->map[game->y_coordinate]
 		[game->x_coordinate + next_move] != '1')
 	{
+		game->number_of_moves++;
+		ft_printf("Number of moves: %d\n", game->number_of_moves);
 		if (game->collectible == 0)
 			time_to_exit(game);
 		if (game->map[game->y_coordinate]

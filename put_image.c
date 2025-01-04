@@ -6,11 +6,42 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:20:42 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 03:12:15 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 05:13:23 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	init_game(t_game *game)
+{
+	game->fd = -1;
+	game->map = NULL;
+	game->empty_map = NULL;
+	game->sub_map = NULL;
+	game->collectible_img = NULL;
+	game->exit_img = NULL;
+	game->player_img = NULL;
+	game->wall_img = NULL;
+	game->bground_img = NULL;
+	game->win = NULL;
+	game->mlx = NULL;
+	game->height = 0;
+	game->width = 0;
+	game->y_coordinate = 0;
+	game->x_coordinate = 0;
+	game->collectible = 0;
+	game->exit = 0;
+	game->player = 0;
+	game->x_exit = 0;
+	game->y_exit = 0;
+	game->number_of_moves = 0;
+}
+
+void	ft_dest_mlx(t_game *game)
+{
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+}
 
 void	convert_xpm_to_file(t_game *game)
 {

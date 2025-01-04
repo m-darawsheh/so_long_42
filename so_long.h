@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 02:53:14 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 05:50:04 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_game
 	int			**empty_map;
 	int			x_exit;
 	int			y_exit;
+	int			number_of_moves;
 }	t_game;
 
 void	check_wall(t_game *game);
@@ -66,7 +67,6 @@ void	cheacker_ec_move(t_game *game);
 void	convert_xpm_to_file(t_game *game);
 void	put_image_to_window(t_game *game);
 void	free_map(t_game *game);
-void	free_image(t_game *game);
 void	free_empty_map(t_game *game);
 void	ft_on_exit(t_game *game, int keycode);
 void	win_free_fun(char *win_massage, t_game *game);
@@ -78,4 +78,6 @@ void	choose_up_down(t_game *game, int next_move);
 void	choose_left_right(t_game *game, int next_move);
 void	exit_place(t_game *game);
 void	time_to_exit(t_game *game);
+void	ft_dest_mlx(t_game *game);
+void	init_game(t_game *game);
 #endif
