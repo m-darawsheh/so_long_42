@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 05:44:33 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 11:03:33 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	free_fun(char *error_massage, t_game *game)
 {
 	ft_putendl_fd(error_massage, 2);
-	close(game->fd);
+	if (game->fd != -1)
+		close(game->fd);
 	if (game->map)
 		free_map(game);
 	if (game->empty_map)
@@ -93,7 +94,7 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	if (argc != 2)
 	{
-		perror ("Error\n: Invalid number of arguments");
+		ft_putendl_fd ("Error\n: Invalid number of arguments", 2);
 		return (1);
 	}
 	parsing_map(&game, argv[1]);
@@ -103,9 +104,7 @@ int	main(int argc, char **argv)
 	check_p_e_c(&game);
 	find_player(&game);
 	exit_place(&game);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx,
-			(game.width) * FACTOR, (game.height) * FACTOR, "so_long");
+	prot_init(&game);
 	convert_xpm_to_file(&game);
 	put_image_to_window(&game);
 	can_move(&game);

@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:20:42 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 05:13:23 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 10:21:33 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,13 @@ void	put_image_to_window(t_game *game)
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->collectible_img, j * FACTOR, i * FACTOR);
+				prot_and_put(game, 'C', j, i);
 			else if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->player_img, j * FACTOR, i * FACTOR);
+				prot_and_put(game, 'P', j, i);
 			else if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->wall_img, j * FACTOR, i * FACTOR);
+				prot_and_put(game, '1', j, i);
 			else
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->bground_img, j * FACTOR, i * FACTOR);
+				prot_and_put(game, '0', j, i);
 			j++;
 		}
 		i++;
