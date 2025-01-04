@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 09:22:32 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 10:39:28 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 11:05:31 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	prot_init(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		free_fun("Error\nFailed to initialize mlx\n", game);		
+		free_fun("Error\nFailed to initialize mlx\n", game);
 	game->win = mlx_new_window(game->mlx,
 			(game->width) * FACTOR, (game->height) * FACTOR, "so_long");
 	if (!game->win)
