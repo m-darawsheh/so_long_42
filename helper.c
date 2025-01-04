@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 19:08:30 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 05:49:54 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 06:00:34 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,26 @@ void	win_free_fun(char *win_massage, t_game *game)
 {
 	ft_putendl_fd(win_massage, 1);
 	close(game->fd);
-	free_map(game);
-	free_empty_map(game);
+	if (game->map)
+		free_map(game);
+	if (game->empty_map)
+		free_empty_map(game);
 	if (game->sub_map)
-	{
 		free(game->sub_map);
-	}
-	free_image(game);
+	if (game->collectible_img)
+		mlx_destroy_image(game->mlx, game->collectible_img);
+	if (game->exit_img)
+		mlx_destroy_image(game->mlx, game->exit_img);
+	if (game->player_img)
+		mlx_destroy_image(game->mlx, game->player_img);
+	if (game->wall_img)
+		mlx_destroy_image(game->mlx, game->wall_img);
+	if (game->bground_img)
+		mlx_destroy_image(game->mlx, game->bground_img);
 	if (game->win)
-	{
 		mlx_destroy_window(game->mlx, game->win);
-	}
 	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
+		ft_dest_mlx(game);
 	exit (0);
 }
 
