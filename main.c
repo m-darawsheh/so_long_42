@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/03 20:46:56 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 02:58:00 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	main(int argc, char **argv)
 	check_wall(&game);
 	check_p_e_c(&game);
 	find_player(&game);
+	exit_place(&game);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx,
 			(game.width) * FACTOR, (game.height) * FACTOR, "so_long");

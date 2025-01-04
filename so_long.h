@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 00:37:55 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 02:53:14 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_game
 	int			x_coordinate;
 	int			y_coordinate;
 	int			**empty_map;
+	int			x_exit;
+	int			y_exit;
 }	t_game;
 
 void	check_wall(t_game *game);
@@ -74,5 +76,6 @@ void	image_up_down(t_game *game, int next_move);
 void	image_left_right(t_game *game, int next_move);
 void	choose_up_down(t_game *game, int next_move);
 void	choose_left_right(t_game *game, int next_move);
-
+void	exit_place(t_game *game);
+void	time_to_exit(t_game *game);
 #endif

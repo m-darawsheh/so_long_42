@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   time_to_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/02 15:37:17 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 03:14:07 by mdarawsh         ###   ########.fr       */
+/*   Created: 2025/01/04 02:25:45 by mdarawsh          #+#    #+#             */
+/*   Updated: 2025/01/04 03:13:52 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	move_player(int keycode, t_game *game)
+void	exit_place(t_game *game)
 {
-	ft_printf("collectible number :  %d\n", game->collectible);
-	if (keycode == 119)
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (game->map[y])
 	{
-		choose_up_down(game, -1);
-		ft_printf("UP\n");
+		x = 0;
+		while (game->map[y][x])
+		{
+			if (game->map[y][x] == 'E')
+			{
+				game->x_exit = x;
+				game->y_exit = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
 	}
-	if (keycode == 115)
-	{
-		choose_up_down(game, 1);
-		ft_printf("DOWN\n");
-	}
-	if (keycode == 100)
-	{
-		choose_left_right(game, 1);
-		ft_printf("RIGHT\n");
-	}
-	if (keycode == 97)
-	{
-		choose_left_right(game, -1);
-		ft_printf("LEFT\n");
-	}
-	return (0);
+}
+
+void	time_to_exit(t_game *game)
+{
+	mlx_put_image_to_window(game->mlx, game->win,
+		game->exit_img, game->x_exit * FACTOR, game->y_exit * FACTOR);
 }

@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:20:42 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/03 21:45:05 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/04 03:12:15 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,28 @@ void	convert_xpm_to_file(t_game *game)
 void	put_image_to_window(t_game *game)
 {
 	int	i;
-	int	x;
-	int	y;
+	int	j;
 
-	i = -1;
-	while (++i < game->height * game->width)
+	i = 0;
+	while (game->map[i])
 	{
-		x = i % game->width;
-		y = i / game->width;
-		if (game->map[y][x] == 'C')
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->collectible_img, x * FACTOR, y * FACTOR);
-		if (game->map[y][x] == 'E')
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->exit_img, x * FACTOR, y * FACTOR);
-		if (game->map[y][x] == 'P')
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->player_img, x * FACTOR, y * FACTOR);
-		if (game->map[y][x] == '1')
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->wall_img, x * FACTOR, y * FACTOR);
-		if (game->map[y][x] == '0')
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->bground_img, x * FACTOR, y * FACTOR);
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->collectible_img, j * FACTOR, i * FACTOR);
+			else if (game->map[i][j] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->player_img, j * FACTOR, i * FACTOR);
+			else if (game->map[i][j] == '1')
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->wall_img, j * FACTOR, i * FACTOR);
+			else
+				mlx_put_image_to_window(game->mlx, game->win,
+					game->bground_img, j * FACTOR, i * FACTOR);
+			j++;
+		}
+		i++;
 	}
 }
