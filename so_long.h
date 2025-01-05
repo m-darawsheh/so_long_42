@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 11:34:12 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 10:21:03 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:50:34 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	time_to_exit(t_game *game);
 void	ft_dest_mlx(t_game *game);
 void	init_game(t_game *game);
 void	prot_init(t_game *game);
-void	f_prot_and_put(t_game *game, char type);
+void	f1_prot_and_put(t_game *game, char type);
+void	f2_prot_and_put(t_game *game, int return_value);
 void	prot_and_put(t_game *game, char type, int x, int y);
 #endif

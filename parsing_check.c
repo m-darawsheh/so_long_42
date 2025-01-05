@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 17:31:15 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 00:40:24 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:08:14 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ void	check_map(t_game *game)
 	int	i;
 
 	i = 0;
-	if (game->sub_map == NULL)
+	if (!game->sub_map || game->sub_map[0] == '\0')
 	{
 		free_fun("Error\n: Invalid map is empty", game);
 	}
 	while (game->sub_map[i])
 	{
+		if (game->sub_map[i] != '1' && game->sub_map[i] != '0'
+			&& game->sub_map[i] != 'P' && game->sub_map[i] != 'E'
+			&& game->sub_map[i] != 'C' && game->sub_map[i] != '\n')
+		{
+			free_fun("Error\n: Invalid map (Invalid element)", game);
+		}
 		if (game->sub_map[i] == '\n' && game->sub_map[i + 1] == '\n')
 		{
 			free_fun("Error\n: Invalid map (Empty line)", game);
-		}
-		if (!(game->sub_map[i] != '1' || game->sub_map[i] != '0'
-				|| game->sub_map[i] != 'P' || game->sub_map[i] != 'E'
-				|| game->sub_map[i] != 'C'))
-		{
-			free_fun("Error\n: Invalid map (Invalid element)", game);
 		}
 		i++;
 	}

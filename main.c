@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:36:06 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 11:03:33 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:05:40 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,10 @@ int	main(int argc, char **argv)
 	check_p_e_c(&game);
 	find_player(&game);
 	exit_place(&game);
+	can_move(&game);
 	prot_init(&game);
 	convert_xpm_to_file(&game);
 	put_image_to_window(&game);
-	can_move(&game);
 	mlx_hook(game.win, 2, 1L << 0, move_player, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);

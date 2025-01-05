@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:20:42 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 10:21:33 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:04:02 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	convert_xpm_to_file(t_game *game)
 			"images/wall.xpm", &x, &y);
 	game->bground_img = mlx_xpm_file_to_image(game->mlx,
 			"images/bground.xpm", &x, &y);
+	f1_prot_and_put(game, '0');
 }
 
 void	put_image_to_window(t_game *game)

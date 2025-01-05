@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 09:22:32 by mdarawsh          #+#    #+#             */
-/*   Updated: 2025/01/04 11:05:31 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:37:47 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,46 +23,51 @@ void	prot_init(t_game *game)
 		free_fun("Error\nFailed to create window\n", game);
 }
 
-void	f_prot_and_put(t_game *game, char type)
+void	f1_prot_and_put(t_game *game, char type)
 {
-	if (type == 'C')
-		if (!game->collectible_img)
-			free_fun("Error\nFailed to load collectible image\n", game);
-	if (type == 'P')
-		if (!game->player_img)
-			free_fun("Error\nFailed to load player image\n", game);
-	if (type == '1')
-		if (!game->wall_img)
-			free_fun("Error\nFailed to load wall image\n", game);
-	if (type == '0')
-		if (!game->bground_img)
-			free_fun("Error\nFailed to load background image\n", game);
+	(void)type;
+	if (!game->collectible_img)
+		free_fun("Error\nFailed to load collectible image\n", game);
+	if (!game->player_img)
+		free_fun("Error\nFailed to load player image\n", game);
+	if (!game->wall_img)
+		free_fun("Error\nFailed to load wall image\n", game);
+	if (!game->bground_img)
+		free_fun("Error\nFailed to load background image\n", game);
+	if (!game->exit_img)
+		free_fun("Error\nFailed to load background image\n", game);
+}
+
+void	f2_prot_and_put(t_game *game, int return_value)
+{
+	if (return_value == -1)
+		free_fun("Error\nFailed to load image\n", game);
 }
 
 void	prot_and_put(t_game *game, char type, int x, int y)
 {
+	int	return_value;
+
+	return_value = 0;
 	if (type == 'C')
 	{
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->collectible_img, x * FACTOR, y * FACTOR);
-		f_prot_and_put(game, type);
+		return_value = mlx_put_image_to_window(game->mlx, game->win,
+				game->collectible_img, x * FACTOR, y * FACTOR);
 	}
 	else if (type == 'P')
 	{
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->player_img, x * FACTOR, y * FACTOR);
-		f_prot_and_put(game, type);
+		return_value = mlx_put_image_to_window(game->mlx, game->win,
+				game->player_img, x * FACTOR, y * FACTOR);
 	}
 	else if (type == '1')
 	{
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->wall_img, x * FACTOR, y * FACTOR);
-		f_prot_and_put(game, type);
+		return_value = mlx_put_image_to_window(game->mlx, game->win,
+				game->wall_img, x * FACTOR, y * FACTOR);
 	}
 	else
 	{
-		mlx_put_image_to_window(game->mlx, game->win,
-			game->bground_img, x * FACTOR, y * FACTOR);
-		f_prot_and_put(game, type);
+		return_value = mlx_put_image_to_window(game->mlx, game->win,
+				game->bground_img, x * FACTOR, y * FACTOR);
 	}
+	f2_prot_and_put(game, return_value);
 }

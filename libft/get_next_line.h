@@ -6,7 +6,7 @@
 /*   By: mdarawsh <mdarawsh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 16:36:36 by mdarawsh          #+#    #+#             */
-/*   Updated: 2024/12/30 14:13:08 by mdarawsh         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:46:44 by mdarawsh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 15
+#  define BUFFER_SIZE 3	
 # endif
 # include <fcntl.h>
 # include <stdlib.h>
